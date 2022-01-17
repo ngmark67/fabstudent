@@ -2,11 +2,12 @@
 site_name: Your name - Fab Academy
 site_description: Fab Academy documentation site for Your Name
 site_author: Your name
-copyright: Copyright 2021 Your name - Creative Commons Attribution Non Commercial
+copyright: Copyright 2022 Your name - Creative Commons Attribution Non Commercial
 
 site_url: http://fibasile.fabcloud.io/fabacademy-student-template/
 
 extra:
+  # Set your own social media below (or remove)
   social:
     # For other social icons at https://squidfunk.github.io/mkdocs-material/setup/adding-social-links/
     - icon: fontawesome/brands/instagram
@@ -39,6 +40,8 @@ plugins:
   - search
   - git-revision-date-localized:
       fallback_to_build_date: true
+      # Read more: https://timvink.github.io/mkdocs-git-revision-date-localized-plugin/options/#enabled
+      enabled: !ENV [ENABLED_GIT_REVISION_DATE, False]
 
 markdown_extensions:
   - extra

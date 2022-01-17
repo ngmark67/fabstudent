@@ -1,4 +1,4 @@
-image: python:3.8-slim
+image: python:3.9-slim
 
 before_script:
   # install Git for the mkdocs revision plugin
@@ -13,17 +13,19 @@ test:
   artifacts:
     paths:
     - test
-  except:
-  - master
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: never
 
 pages:
   stage: deploy
   variables:
+    ENABLED_GIT_REVISION_DATE: "true"
     GIT_DEPTH: 1000
   script:
   - time mkdocs build --site-dir public
   artifacts:
     paths:
     - public
-  only:
-  - master
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
